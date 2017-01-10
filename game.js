@@ -101,7 +101,7 @@ var abuse = ["where are you from","can i see your passport","shaking my head","b
 //array that informs them that they passed
 var correctG = ["You passed: you smart","You passed: you sabi","You passed: ride on","You passed: i like that",
             "You passed: keep it up","You passed: thumbs up"];
-
+function showAlert(){};
 //checking users entry and pics name
 function myfunction(){
 if(document.getElementById("trial").value.toLowerCase() === document.getElementById("images").alt){
@@ -110,10 +110,10 @@ if(document.getElementById("trial").value.toLowerCase() === document.getElementB
     levels += 1;
     //saving the scores to the phone
     window.localStorage.setItem('points', scores);
-    scores = window.localStorage.getItem('points');
+    scores = parseInt(window.localStorage.getItem('points'));
     //saving the stage to the phone
     window.localStorage.setItem('stages', levels);
-    levels = window.localStorage.getItem('stages');
+    levels = parseInt(window.localStorage.getItem('stages'));
     //saving the counter to phone
     window.localStorage.setItem('key', counter);
     counter = window.localStorage.getItem('key');
@@ -126,7 +126,8 @@ if(document.getElementById("trial").value.toLowerCase() === document.getElementB
     //new things
     var nice = Math.floor(Math.random() * 6);
     comment = correctG[nice];
-    alert(comment);
+   // alert(comment);
+    navigator.notification.alert(comment,showAlert,'9ja Mascots','Continue');
     idea = faces[counter].clue;
     names = faces[counter].title;
     namesNo = names.length;
@@ -140,7 +141,8 @@ if(document.getElementById("trial").value.toLowerCase() === document.getElementB
 
 } else if(document.getElementById("trial").value.toLowerCase() != document.getElementById("images").alt){
     var yab = Math.floor(Math.random() * 6);
-    document.getElementById("result").innerHTML = abuse[yab]; }
+    document.getElementById("result").innerHTML = abuse[yab];
+navigator.notification.vibrate(1000); }
 }
 //lets display the score
 var scores = 0;
@@ -161,17 +163,17 @@ function firstImage(){
     //saving scores to the phone
     if(window.localStorage.getItem('points')==null){
         window.localStorage.setItem('points', 0);
-        scores = window.localStorage.getItem('points');
+        scores = parseInt(window.localStorage.getItem('points'));
         document.getElementById("score").innerHTML = scores;
-       } else { scores = window.localStorage.getItem('points');
+       } else { scores = parseInt(window.localStorage.getItem('points'));
               document.getElementById("score").innerHTML = scores; }
     //end of saving score
     //saving levels to phone
     if(window.localStorage.getItem('stages')==null){
         window.localStorage.setItem('stages', 1);
-        levels = window.localStorage.getItem('stages');
+        levels = parseInt(window.localStorage.getItem('stages'));
         document.getElementById("level").innerHTML = levels;
-       } else { levels = window.localStorage.getItem('stages');
+       } else { levels = parseInt(window.localStorage.getItem('stages'));
               document.getElementById("level").innerHTML = levels; }
     document.getElementById('images').src=faces[counter].src;
     document.getElementById("images").alt = faces[counter].title;
